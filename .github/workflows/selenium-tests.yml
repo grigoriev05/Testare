@@ -1,4 +1,4 @@
-name: Run Selenium Tests
+name: Run Selenium Tests on Windows
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   selenium-tests:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -20,9 +20,7 @@ jobs:
           java-version: 17
 
       - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+        run: choco install googlechrome -y
 
-      - name: Build and run tests
+      - name: Run Maven tests
         run: mvn clean test
